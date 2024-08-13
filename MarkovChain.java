@@ -82,16 +82,12 @@ public class MarkovChain implements Iterator<String> {
     // add field(s) used in implementing the Iterator functionality
     private String nextWord;
 
-    /**
-     * No need to write any constructors. They are provided for you.
-     */
     public MarkovChain() {
         this(new RandomNumberGenerator());
     }
 
     /**
-     * No need to write any constructors. They are provided for you.
-     *
+     * 
      * @param ng - A (non-null) NumberGenerator used to walk through the
      *           MarkovChain
      */
@@ -108,10 +104,7 @@ public class MarkovChain implements Iterator<String> {
     }
 
     /**
-     * Adds a bigram to the Markov Chain dictionary. Note that the dictionary is
-     * a field called chain of type {@code Map<String,
-     * ProbabilityDistribution<String>> }. The `record()` method from the
-     * `ProbabilityDistribution` class can be useful here.
+     * Adds a bigram to the Markov Chain dictionary. 
      *
      * @param first  - The first word of the Bigram (should not be null)
      * @param second - The second word of the Bigram (should not be null)
@@ -133,24 +126,6 @@ public class MarkovChain implements Iterator<String> {
     /**
      * Adds a sentence's training data to the MarkovChain frequency
      * information.
-     * <p>
-     * This method is meant to be called multiple times. Each call to this
-     * method should provide this method with an Iterator that represents one
-     * sentence. If we were to train a Markov Chain with four unique sentences,
-     * we would convert each sentence into an iterator and call train() four
-     * times, once on each of the iterators. Remember to update startWords
-     * accordingly.
-     * <p>
-     * Look at the homework instructions for more details on bigrams. You should
-     * use addBigram() in this method.
-     * <p>
-     * Once you reach the last word of a sentence, add a bigram of that word and
-     * the string {@code "<END>"} (we provide it as the variable END_TOKEN). This
-     * functions similarly to None in OCaml, letting us notate an absence of
-     * data without various issues that come up if we use null.
-     * Using this string will teach the Markov Chain how to end a sentence.
-     * <p>
-     * Do nothing if the sentence is empty.
      *
      * @param sentence - an iterator representing one sentence of training data
      * @throws IllegalArgumentException - when the sentence Iterator is null
@@ -192,15 +167,6 @@ public class MarkovChain implements Iterator<String> {
      * Given a starting String, sets up the Iterator functionality such that:
      * (1) the Markov Chain will begin a walk at start. (2) the first call to
      * next() made after calling reset(start) will return start.
-     * <p>
-     * If start is {@code "<END>"}, then hasNext() should return false.
-     *
-     * start need not actually be a part of the chain (but it should have no
-     * successor). In the edge case that you've reset a word that isn't
-     * present in the training data, the first call to next() will return the word,
-     * and a second call to next() will throw a NoSuchElementException.
-     * Likewise, the first call to hasNext() will return true, and a call to
-     * hasNext() after a call to next() will return false.
      *
      * @param start - the element that will be the first word in a walk on the
      *              Markov Chain.
@@ -215,8 +181,6 @@ public class MarkovChain implements Iterator<String> {
     }
 
     /**
-     * DO NOT EDIT THIS METHOD. WE COMPLETED IT FOR YOU.
-     * <p>
      * Sets up the Iterator functionality with a random start word such that the
      * MarkovChain will now move along a walk beginning with that start word.
      * <p>
@@ -232,12 +196,6 @@ public class MarkovChain implements Iterator<String> {
     }
 
     /**
-     * This method should check if there is another word to retrieve from the
-     * Markov Chain based on the current word of our walk. Remember that the
-     * end of a sentence is denoted by the token {@code "<END>"}.
-     * <p>
-     * Your solution should be very short.
-     *
      * @return true if {@link #next()} will return a non-trivial String
      *         (i.e. it is a meaningful part of the sentence - see {@link #train})
      *         and false otherwise
@@ -248,12 +206,6 @@ public class MarkovChain implements Iterator<String> {
     }
 
     /**
-     * If reset() or reset(String start) was called immediately before this,
-     * this method should return the string that was set up by that reset call.
-     * Otherwise, this method should return a successor picked from the
-     * probability distribution associated with the word returned by the
-     * previous call to next().
-     *
      * @return the next word in the MarkovChain (chosen at random via the number
      *         generator if it is a successor)
      * @throws NoSuchElementException if there are no more words on the walk
@@ -345,10 +297,6 @@ public class MarkovChain implements Iterator<String> {
         ng = new ListNumberGenerator(probabilityNumbers);
     }
 
-    /**
-     * Use this method to print out markov chains with words and probability
-     * distributions.
-     */
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
