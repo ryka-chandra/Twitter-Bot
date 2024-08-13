@@ -14,19 +14,6 @@ import java.util.List;
 
 /** Tests for TwitterBot class */
 public class TwitterBotTest {
-
-    /*
-     * The below test cases test whether your TwitterBot class itself is written
-     * correctly. To generate a tweet of specific content, make a desiredTweet list
-     * containing the words you want to appear in the tweet. Then, call
-     * fixDistribution on desiredTweet. This should make your twitter bot generate
-     * the desired tweet as a string when you call generateTweet with the length of
-     * your tweet content (not including punctuations).
-     *
-     * These tests operate very similarly to our MarkovChain tests in its use of
-     * `fixDistribution`, so make sure you know how to test MarkovChain before
-     * testing this!
-     */
     @Test
     public void simpleTwitterBotShortTest() {
         List<String> desiredTweet = new ArrayList<>(
