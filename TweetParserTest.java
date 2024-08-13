@@ -50,11 +50,8 @@ public class TweetParserTest {
         assertEquals("ab'c", TweetParser.cleanWord("ab'c"));
     }
 
-    /* **** ****** **** WRITE YOUR TESTS BELOW THIS LINE **** ****** **** */
-
     /* **** ****** ***** **** EXTRACT COLUMN TESTS **** **** ****** ***** */
 
-    /* Here's an example test case. Be sure to add your own as well */
     @Test
     public void testExtractColumnGetsCorrectColumn() {
         assertEquals(
@@ -88,7 +85,6 @@ public class TweetParserTest {
 
     /* **** ****** ***** ***** CSV DATA TO TWEETS ***** **** ****** ***** */
 
-    /* Here's an example test case. Be sure to add your own as well */
     @Test
     public void testCsvDataToTweetsSimpleCSV() {
         StringReader sr = new StringReader(
@@ -176,7 +172,6 @@ public class TweetParserTest {
 
     /* **** ****** ***** ** PARSE AND CLEAN SENTENCE ** ***** ****** ***** */
 
-    /* Here's an example test case. Be sure to add your own as well */
     @Test
     public void parseAndCleanSentenceNonEmptyFiltered() {
         List<String> sentence = TweetParser.parseAndCleanSentence("abc #@#F");
@@ -251,7 +246,6 @@ public class TweetParserTest {
 
     /* **** ****** ***** **** PARSE AND CLEAN TWEET *** ***** ****** ***** */
 
-    /* Here's an example test case. Be sure to add your own as well */
     @Test
     public void testParseAndCleanTweetRemovesURLS1() {
         List<List<String>> sentences = TweetParser
@@ -332,7 +326,6 @@ public class TweetParserTest {
 
     /* **** ****** ***** ** CSV DATA TO TRAINING DATA ** ***** ****** **** */
 
-    /* Here's an example test case. Be sure to add your own as well */
     @Test
     public void testCsvDataToTrainingDataSimpleCSV() {
         StringReader sr = new StringReader(
@@ -363,7 +356,6 @@ public class TweetParserTest {
         StringReader emptyLinesReader = new StringReader("\n\n\n\n");
         BufferedReader emptyLinesBr = new BufferedReader(emptyLinesReader);
         List<List<String>> expectedEmptyLines = new LinkedList<>();
-        //expectedEmptyLines.add(new LinkedList<>());
         assertEquals(expectedEmptyLines, TweetParser.csvDataToTrainingData(emptyLinesBr, 0));
     }
 
