@@ -12,25 +12,19 @@ import java.io.IOException;
 import java.io.FileWriter;
 
 /**
- * This is the class where everything you've worked on thus far comes together!
- * You can see that we've provided a path to a CSV file full of tweets and the
- * column from which they can be extracted. When run as an application, this
+ * When run as an application, this
  * program builds a Markov Chain from the training data in the CSV file,
  * generates 10 random tweets, and prints them to the terminal.
  * <p>
  * This class also provides the writeTweetsToFile method, which can be used to
  * create a file containing randomly generated tweets.
- * <p>
- * Note: All IOExceptions thrown by writers should be caught and handled
- * properly.
+ * 
  */
 public class TwitterBot {
 
     /**
      * This is a path to the CSV file containing the tweets. The main method
-     * below uses the tweets in this file when calling Twitterbot. If you want
-     * to run the Twitterbot on the other files we provide, change this path to
-     * a different file. (You may need to adjust the TWEET_COLUMN too.)
+     * below uses the tweets in this file when calling Twitterbot. 
      */
     static final String PATH_TO_TWEETS = "files/dog_feelings_tweets.csv";
     /** Column in the PATH_TO_TWEETS CSV file to read tweets from */
@@ -38,7 +32,7 @@ public class TwitterBot {
     /** File to store generated tweets */
     static final String PATH_TO_OUTPUT_TWEETS = "files/generated_tweets.txt";
 
-    /** The MarkovChain you'll be using to generate tweets */
+    /** The MarkovChain to generate tweets */
     MarkovChain mc;
     /** RandomNumber generator to pick random numbers */
     NumberGenerator ng;
@@ -80,16 +74,7 @@ public class TwitterBot {
 
     /**
      * Given a List of Strings, prints those Strings to a file (one String per
-     * line in the file). This method uses BufferedWriter, the flip side to
-     * BufferedReader. Ensure that each tweet you generate is written on its own
-     * line in the file produced. It may be useful to look at the JavaDocs for
-     * FileWriter.
-     * <p>
-     * You may assume none of the arguments or strings passed in will be null.
-     * <p>
-     * If the process of writing the data triggers an IOException, you should
-     * catch it and stop writing. (You can also print an error message to the
-     * terminal, but we will not test that behavior.)
+     * line in the file). 
      *
      * @param stringsToWrite - A List of Strings to write to the file
      * @param filePath       - the string containing the path to the file where
@@ -104,7 +89,6 @@ public class TwitterBot {
     ) {
         File file = Paths.get(filePath).toFile();
         BufferedWriter bw;
-        // Complete this method.
         if (file == null) {
             return;
         }
@@ -139,32 +123,7 @@ public class TwitterBot {
 
     /**
      * Generates a tweet of a given number of words by using the populated
-     * MarkovChain. Remember in the writeup where we explained how to use
-     * MarkovChain to pick a random starting word and then pick each subsequent
-     * word based on the probability that it follows the one before? This is
-     * where you implement that core logic!
-     * <p>
-     * Use the (assumed to be trained) MarkovChain as an iterator to build up a
-     * String that represents the tweet that's returned.
-     * <p>
-     * 1. reset the MarkovChain (to prepare it to generate a new sentence)
-     * 2. validate the numWords argument
-     * 3. repeatedly generate new words to add to the tweet:
-     * <p>
-     * 3.a If the MarkovChain has no more values in its Iterator but the tweet
-     * is not yet at the required number of words, use randomPunctuation() to
-     * end the sentence and then reset() to begin the next sentence with a
-     * random start word.
-     * <p>
-     * Your tweet should be properly formatted with one space between each word
-     * and between sentences. It should not contain any leading or trailing
-     * whitespace. You should leave the words uncapitalized, just as they are
-     * from TweetParser. All tweets should end in punctuation.
-     * <p>
-     * You should return an empty string if there were no sentences available to
-     * access when calling hasNext or if the number of words is 0. You also need
-     * to do some input validation to make sure the number of words is not
-     * negative.
+     * MarkovChain. 
      *
      * @param numWords - The desired number of words of the tweet to be
      *                 produced
@@ -323,19 +282,7 @@ public class TwitterBot {
 
     /**
      * Modifies all MarkovChains to output sentences in the order specified.
-     * <p>
-     * The goal of `fixDistribution` is to ensure that our underlying
-     * probability distributions output a tweet in the order that we desire. Our
-     * implementation does this by splitting us into 2 LNGs:
-     * 1. TwitterBot LNG
-     * This LNG serves to make sure our punctuation is output in the order we
-     * expect.
-     * 2. MarkovChain LNG
-     * This LNG makes sure the tweets are output in
-     * the proper order. This will be built by running `fixDistribution` on the
-     * Markov Chain with punctuation replaced by null.
-     * <p>
-     * Assumes that the expected tweet is punctuated.
+     * 
      *
      * @param tweet - an ordered list of words and punctuation that the
      *              MarkovChain should output.
