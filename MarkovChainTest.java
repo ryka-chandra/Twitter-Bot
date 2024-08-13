@@ -12,15 +12,9 @@ import java.util.Arrays;
 /** Tests for MarkovChain */
 public class MarkovChainTest {
 
-    /*
-     * Writing tests for Markov Chain can be a little tricky.
-     * We provide a few tests below to help you out, but you still need
-     * to write your own.
-     */
-
     /* **** ****** **** **** ADD BIGRAMS TESTS **** **** ****** **** */
 
-    /* Here's an example test case. Be sure to add your own as well */
+ 
     @Test
     public void testAddBigram() {
         MarkovChain mc = new MarkovChain();
@@ -64,7 +58,7 @@ public class MarkovChainTest {
 
     /* ***** ****** ***** ***** TRAIN TESTS ***** ***** ****** ***** */
 
-    /* Here's an example test case. Be sure to add your own as well */
+ 
     @Test
     public void testTrain() {
         MarkovChain mc = new MarkovChain();
@@ -128,25 +122,9 @@ public class MarkovChainTest {
 
     /* **** ****** ****** MARKOV CHAIN CLASS TESTS ***** ****** ***** */
 
-    /* Here's an example test case. Be sure to add your own as well */
+ 
     @Test
     public void testWalk() {
-        /*
-         * Using the sentences "CIS 1200 rocks" and "CIS 1200 beats CIS 1600",
-         * we're going to put some bigrams into the Markov Chain.
-         *
-         * While in the real world, we want the sentence we output to be random,
-         * we don't want this in testing. For testing, we want to modify our
-         * ProbabilityDistribution such that it will output a predictable chain
-         * of words.
-         *
-         * Luckily, we've provided a `fixDistribution` method that will do this
-         * for you! By calling `fixDistribution` with a list of words that you
-         * expect to be output, the ProbabilityDistributions will be modified to
-         * output your words in that order.
-         *
-         * See our below test for an example of how to use this.
-         */
 
         String[] expectedWords = { "CIS", "1200", "beats", "CIS", "1200", "rocks" };
         MarkovChain mc = new MarkovChain();
