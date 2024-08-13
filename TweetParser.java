@@ -10,14 +10,6 @@ import java.io.BufferedReader;
  * of the tweets that would be bad inputs to MarkovChain (for example, a URL).
  * It then parses tweets into sentences and returns those sentences as lists
  * of cleaned-up words.
- * <p>
- * Note: TweetParser's public methods are csvDataToTrainingData() and
- * getPunctuation(). These are the only methods that other classes should call.
- * <p>
- * All the other methods provided are helper methods that build up the code
- * you'll need to write those public methods. They have "package" (default, no
- * modifier) visibility, which lets us write test cases for them as long as
- * those test cases are in the same package.
  */
 public class TweetParser {
 
@@ -40,14 +32,7 @@ public class TweetParser {
      * sequence of characters, or, any string containing a non-word character.
      * <p>
      * Similarly, the URL_REGEX matches any substring that starts a word with
-     * "http" and continues until some whitespace occurs. See the removeURLs
-     * static method.
-     * <p>
-     * See https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern
-     * .html for more details about Java's regular expressions.
-     * <p>
-     * tldr: use word.matches(BAD_WORD_REGEX) to determine if word is a bad
-     * String.
+     * "http" and continues until some whitespace occurs. 
      */
     private static final String BAD_WORD_REGEX = ".*[\\W&&[^']].*";
     private static final String URL_REGEX = "\\bhttp\\S*";
@@ -70,8 +55,6 @@ public class TweetParser {
     }
 
     /**
-     * Do not modify this method.
-     * <p>
      * Given a string, replaces all the punctuation with periods.
      * <p>
      * The replace() function returns a string where all instances of a character
@@ -88,17 +71,8 @@ public class TweetParser {
     }
 
     /**
-     * Do not modify this method.
-     * <p>
      * Given a tweet, splits the tweet into sentences (without end punctuation)
      * and inserts each sentence into a list.
-     * <p>
-     * Use this as a helper function for parseAndCleanTweet().
-     * <p>
-     * The trim() function returns a string where the leading and trailing
-     * spaces are removed. The split() function breaks apart a string according
-     * to the given regular expression and returns a string array of these
-     * splits.
      *
      * @param tweet - a String representing a tweet
      * @return A List of Strings where each String is a (non-empty) sentence
@@ -120,12 +94,6 @@ public class TweetParser {
      * int that represents the column of the String that we want
      * to extract from, return the contents of that column from the String.
      * Columns in the buffered reader are zero indexed.
-     * <p>
-     * You may find the String.split() method useful here. Your solution should
-     * be relatively short.
-     * <p>
-     * You may assume that the column contents themselves don't have any
-     * commas.
      *
      * @param csvLine   - a line extracted from a FileLine Iterator
      * @param csvColumn - the column of the CSV line whose contents ought to be
@@ -143,17 +111,10 @@ public class TweetParser {
         } else {
             return arr[csvColumn];
         }
-        // Complete this method.
+         
     }
 
     /**
-     * Given a buffered reader and the column that the tweets are in,
-     * use the extractColumn and a FileLineIterator to extract every tweet from
-     * the reader. (Recall that extractColumn returns null if there is no data
-     * at that column.) You should skip lines in the reader for which the
-     * tweetColumn is out of bounds. You should return an empty list if
-     * the column is out of bounds or if there are no tweets. Do not return null.
-     *
      * @param br          - a BufferedReader that represents tweets
      * @param tweetColumn - the number of the column in the buffered reader
      *                    that contains the tweet
@@ -170,12 +131,10 @@ public class TweetParser {
                 l.add(col);
             }
         }
-        return l; // Complete this method.
+        return l; 
     }
 
     /**
-     * Do not modify this method.
-     * <p>
      * Cleans a word by removing leading and trailing whitespace and converting
      * it to lower case. If the word matches the BAD_WORD_REGEX or is the empty
      * String, returns null instead.
@@ -195,11 +154,7 @@ public class TweetParser {
     /**
      * Splits a String representing a sentence into a sequence of words,
      * filtering out any "bad" words from the sentence. Return an empty
-     * list if there are no valid strings. Do not return null.
-     * <p>
-     * Hint: use the String split method and the cleanWord helper defined above.
-     * You should be splitting on one space of whitespace since words are
-     * delimited by spaces.
+     * list if there are no valid strings. 
      *
      * @param sentence - a (non-null) String representing one sentence with no
      *                 end punctuation from a tweet
@@ -215,12 +170,10 @@ public class TweetParser {
                 result.add(word);
             }
         }
-        return result; // Complete this method.
+        return result; 
     }
 
     /**
-     * Do not modify this method
-     * <p>
      * Given a String, remove all substrings that look like a URL. Any word that
      * begins with the character sequence 'http' is simply replaced with the
      * empty string.
@@ -237,11 +190,7 @@ public class TweetParser {
     /**
      * Processes a tweet in to a list of sentences, where each sentence is
      * itself a (non-empty) list of cleaned words. Before breaking up the tweet
-     * into sentences, this method uses removeURLs to sanitize the tweet. Do not
-     * return null.
-     * <p>
-     * Hint: use removeURLs followed by tweetSplit and parseAndCleanSentence
-     *
+     * into sentences, this method uses removeURLs to sanitize the tweet. 
      * @param tweet - a String that will be split into sentences, each of which
      *              is cleaned as described above (assumed to be non-null)
      * @return a (non-null) list of sentences, each of which is a (non-empty)
@@ -254,7 +203,7 @@ public class TweetParser {
         for (int i = 0; i < sentences.size(); i++) {
             result.add(parseAndCleanSentence(sentences.get(i)));
         }
-        return result; // Complete this method.
+        return result; 
     }
 
     /**
@@ -262,9 +211,7 @@ public class TweetParser {
      * data, computes a training set. The training set is a list of sentences,
      * each of which is a list of words. The sentences have been cleaned up by
      * removing URLs and non-word characters, putting all words into lower case,
-     * and stripping out punctuation. Note that empty sentences are not added to
-     * the final list of training data examples. Return an empty list if there are
-     * not sentences to be added. Do not return null.
+     * and stripping out punctuation. 
      *
      * @param br          - a BufferedReader that contains the tweets
      * @param tweetColumn - the number of the column in the buffered reader that
@@ -280,7 +227,7 @@ public class TweetParser {
         for (int i = 0; i < tweets.size(); i++) {
             cleanedTweets.addAll(parseAndCleanTweet(tweets.get(i)));
         }
-        return cleanedTweets; // Complete this method
+        return cleanedTweets; 
     }
 
 }
